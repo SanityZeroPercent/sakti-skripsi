@@ -1,8 +1,8 @@
-# Sistem Manajemen Keuangan
+# SAKTI
 
 ## Deskripsi
 
-Sistem Manajemen Keuangan adalah aplikasi sederhana yang dibangun menggunakan PHP natif untuk membantu pengguna dalam mengelola keuangan. Aplikasi ini dirancang untuk memudahkan pencatatan pengeluaran dan pemasukan, serta menyediakan berbagai fitur lainnya yang membantu dalam perencanaan keuangan pribadi.
+SAKTI adalah aplikasi sederhana yang dibangun menggunakan PHP natif untuk membantu pengguna dalam mengelola keuangan. Aplikasi ini dirancang untuk memudahkan pencatatan pengeluaran dan pemasukan, serta menyediakan berbagai fitur lainnya yang membantu dalam perencanaan keuangan pribadi.
 
 ## Fitur Utama
 
