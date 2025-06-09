@@ -70,11 +70,35 @@
                 <?php } else { ?>
                   <img src="../gambar/user/<?php echo $profil['user_foto'] ?>" class="user-image">
                 <?php } ?>
-                <span class="hidden-xs"><?php echo $_SESSION['nama']; ?> - <?php echo $_SESSION['level']; ?></span>
+                <span class="hidden-xs"><?php echo $_SESSION['nama']; ?></span>
               </a>
-            </li>
-            <li>
-              <a href="logout.php" onclick="return confirm('Apakah Anda yakin untuk logout?')"><i class="fa fa-sign-out"></i> LOGOUT</a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                <?php
+                  if ($profil['user_foto'] == "") {
+                ?>
+                  <img src="../gambar/sistem/user.png" class="img-circle">
+                <?php } else { ?>
+                  <img src="../gambar/user/<?php echo $profil['user_foto'] ?>" class="img-circle">
+                <?php } ?>
+
+                  <p>
+                    <?php echo $_SESSION['nama']; ?>
+                    <small><?php echo $_SESSION['level']; ?></small>
+                  </p>
+                </li>
+                
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="/manajemen/user_profile.php" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="logout.php" onclick="return confirm('Apakah Anda yakin untuk logout?')" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>

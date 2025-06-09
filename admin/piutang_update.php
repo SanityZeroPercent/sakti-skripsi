@@ -1,4 +1,7 @@
-<?php 
+<?php
+if ($_SESSION['status'] != "administrator_logedin") {
+    header("location:../index.php?alert=belum_login");
+}
 include '../koneksi.php';
 $id  = $_POST['id'];
 $tanggal  = $_POST['tanggal'];

@@ -20,7 +20,7 @@
 
           <div class="box-header">
             <h3 class="box-title">Pengguna</h3>
-            <a href="user_tambah.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-plus"></i> &nbsp Tambah Pengguna Baru</a>              
+            <a href="user_tambah.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-plus"></i> &nbsp Tambah Pengguna Baru</a>
           </div>
           <div class="box-body">
             <div class="table-responsive">
@@ -36,12 +36,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php 
+                  <?php
                   include '../koneksi.php';
-                  $no=1;
-                  $data = mysqli_query($koneksi,"SELECT * FROM user");
-                  while($d = mysqli_fetch_array($data)){
-                    ?>
+                  $no = 1;
+                  $data = mysqli_query($koneksi, "SELECT * FROM user");
+                  while ($d = mysqli_fetch_array($data)) {
+                  ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['user_nama']; ?></td>
@@ -49,21 +49,24 @@
                       <td><?php echo $d['user_level']; ?></td>
                       <td>
                         <center>
-                          <?php if($d['user_foto'] == ""){ ?>
+                          <?php if ($d['user_foto'] == "") { ?>
                             <img src="../gambar/sistem/user.png" style="width: 80px;height: auto">
-                          <?php }else{ ?>
+                          <?php } else { ?>
                             <img src="../gambar/user/<?php echo $d['user_foto'] ?>" style="width: 80px;height: auto">
                           <?php } ?>
                         </center>
                       </td>
-                      <td>                        
-                        <a class="btn btn-warning btn-sm" href="user_edit.php?id=<?php echo $d['user_id'] ?>"><i class="fa fa-cog"></i></a>
-                        <?php if($d['user_id'] != 1){ ?>
+                      <td>
+                        <?php if ($d['user_id'] == $_SESSION['id']) { ?>
+                        <a class="btn btn-warning btn-sm" href="user_profile.php"><i class="fa fa-cog"></i></a>
+                        <?php } ?>
+                        <?php if ($d['user_id'] != $_SESSION['id']) { ?>
+                          <a class="btn btn-warning btn-sm" href="user_edit.php?id=<?php echo $d['user_id'] ?>"><i class="fa fa-cog"></i></a>
                           <a class="btn btn-danger btn-sm" href="user_hapus.php?id=<?php echo $d['user_id'] ?>"><i class="fa fa-trash"></i></a>
                         <?php } ?>
                       </td>
                     </tr>
-                    <?php 
+                  <?php
                   }
                   ?>
                 </tbody>

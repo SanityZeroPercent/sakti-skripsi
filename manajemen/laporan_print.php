@@ -1,3 +1,8 @@
+<?php
+if ($_SESSION['status'] != "manajemen_logedin") {
+	header("location:../index.php?alert=belum_login");
+}
+?>
  <!DOCTYPE html>
  <html>
  <head>

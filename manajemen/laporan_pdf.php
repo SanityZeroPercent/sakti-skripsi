@@ -1,4 +1,7 @@
 <?php
+if ($_SESSION['status'] != "manajemen_logedin") {
+	header("location:../index.php?alert=belum_login");
+}
 // memanggil library FPDF
 require('../library/fpdf181/fpdf.php');
 

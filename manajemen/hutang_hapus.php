@@ -1,4 +1,7 @@
 <?php 
+if ($_SESSION['status'] != "manajemen_logedin") {
+	header("location:../index.php?alert=belum_login");
+}
 include '../koneksi.php';
 $id  = $_GET['id'];
 

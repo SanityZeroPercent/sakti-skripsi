@@ -1,4 +1,7 @@
-<?php 
+<?php
+if ($_SESSION['status'] != "administrator_logedin") {
+    header("location:../index.php?alert=belum_login");
+}
 include '../koneksi.php';
 $nama  = $_POST['nama'];
 $username = $_POST['username'];
@@ -6,20 +9,20 @@ $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // bcrypt here
 $level = $_POST['level'];
 
 $rand = rand();
-$allowed =  array('gif','png','jpg','jpeg');
+$allowed =  array('gif', 'png', 'jpg', 'jpeg');
 $filename = $_FILES['foto']['name'];
 
-if($filename == ""){
+if ($filename == "") {
     mysqli_query($koneksi, "insert into user values (NULL,'$nama','$username','$password','','$level')");
     header("location:user.php");
-}else{
+} else {
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
 
-    if(!in_array($ext,$allowed) ) {
+    if (!in_array($ext, $allowed)) {
         header("location:user.php?alert=gagal");
-    }else{
-        move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/'.$rand.'_'.$filename);
-        $file_gambar = $rand.'_'.$filename;
+    } else {
+        move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/' . $rand . '_' . $filename);
+        $file_gambar = $rand . '_' . $filename;
         mysqli_query($koneksi, "insert into user values (NULL,'$nama','$username','$password','$file_gambar','$level')");
         header("location:user.php");
     }
