@@ -17,9 +17,9 @@ $pdf->AddPage();
 // setting jenis font yang akan digunakan
 $pdf->SetFont('Arial', 'B', 18);
 // mencetak string 
-$pdf->Cell(280, 7, 'KEMENTERIAN DALAM NEGERI', 0, 1, 'C');
+$pdf->Cell(280, 7, 'Majelis Perwakilan Khusus', 0, 1, 'C');
 $pdf->SetFont('Arial', 'B', 15);
-$pdf->Cell(280, 7, 'PUSAT DATA DAN INFORMASI', 0, 1, 'C');
+$pdf->Cell(280, 7, 'Yayasan Pelayanan Pekabaran Injil Indonesia Batu di Jakarta', 0, 1, 'C');
 $pdf->SetFont('Arial', 'B', 11);
 $pdf->Cell(280, 7, 'LAPORAN KEUANGAN', 0, 1, 'C');
 // Memberikan space kebawah agar tidak terlalu rapat

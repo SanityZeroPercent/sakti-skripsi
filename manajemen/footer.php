@@ -3,7 +3,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2024</strong> - Pusat Data dan Informasi Kementerian Dalam Negeri Republik Indonesia
+    <strong>Copyright &copy; 2024</strong> - Majelis Perwakilan Khusus Yayasan Pelayanan Pekabaran Injil Indonesia Batu di Jakarta.
   </footer>
 
 

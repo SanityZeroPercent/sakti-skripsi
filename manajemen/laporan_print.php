@@ -18,8 +18,8 @@ if ($_SESSION['status'] != "manajemen_logedin") {
 <body>
 
   <center>
-    <h2>KEMENTERIAN DALAM NEGERI</h2>
-    <h3>PUSAT DATA DAN INFORMASI</h3>
+    <h2>Majelis Perwakilan Khusus</h2>
+		<h3>Yayasan Pelayanan Pekabaran Injil Indonesia Batu di Jakarta</h3>
     <h4>LAPORAN KEUANGAN</h4>
   </center>
 
