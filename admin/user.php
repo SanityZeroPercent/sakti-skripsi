@@ -78,6 +78,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 }
 
+// Handle DELETE user
+if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
+  $id = $_GET['id'];
+
+  // Prevent deleting current logged-in user
+  if ($id != $_SESSION['id']) {
+    // Delete user photo if exists
+    $user_data = mysqli_query($koneksi, "SELECT user_foto FROM user WHERE user_id='$id'");
+    $user = mysqli_fetch_assoc($user_data);
+
+    if ($user['user_foto'] != "" && file_exists("../gambar/user/" . $user['user_foto'])) {
+      unlink("../gambar/user/" . $user['user_foto']);
+    }
+
+    mysqli_query($koneksi, "DELETE FROM user WHERE user_id='$id'");
+    header("location:user.php?status=deleted");
+    exit();
+  } else {
+    header("location:user.php?status=delete_failed");
+    exit();
+  }
+}
+
 include 'header.php'; ?>
 <!-- Body: Titel Header -->
 <div class="body-header border-bottom d-flex py-3">
@@ -186,7 +209,9 @@ include 'header.php'; ?>
                 <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit_user_<?php echo $d['user_id'] ?>">
                   <i class="fa fa-cog"></i>
                 </button>
-                <a class="btn btn-danger btn-sm" href="user_hapus.php?id=<?php echo $d['user_id'] ?>"><i class="fa fa-trash"></i></a>
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus_user_<?php echo $d['user_id'] ?>">
+                  <i class="fa fa-trash"></i>
+                </button>
               <?php } ?>
             </td>
           </tr>
@@ -258,6 +283,36 @@ while ($d = mysqli_fetch_array($data)) {
               <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+<?php
+  }
+}
+?>
+
+<?php
+// Generate Delete Modals
+$data = mysqli_query($koneksi, "SELECT * FROM user");
+while ($d = mysqli_fetch_array($data)) {
+  if ($d['user_id'] != $_SESSION['id']) { // Only show delete modal for other users
+?>
+    <!-- Modal Hapus User -->
+    <div class="modal fade" id="hapus_user_<?php echo $d['user_id'] ?>" tabindex="-1" aria-labelledby="hapusUserLabel_<?php echo $d['user_id'] ?>" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="hapusUserLabel_<?php echo $d['user_id'] ?>">Peringatan!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Anda yakin ingin menghapus pengguna <strong><?php echo $d['user_nama']; ?></strong>?</p>
+            <p><small class="text-muted">Data yang sudah dihapus tidak dapat dikembalikan.</small></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <a href="user.php?action=delete&id=<?php echo $d['user_id']; ?>" class="btn btn-danger">Hapus</a>
+          </div>
         </div>
       </div>
     </div>
