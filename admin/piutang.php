@@ -51,117 +51,100 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
 ?>
 <?php include 'header.php'; ?>
 
-<div class="content-wrapper">
+<!-- Body: Titel Header -->
+<div class="body-header border-bottom d-flex py-3">
+  <div class="container-xxl">
+    <div class="row align-items-center g-2">
+      <div class="col">
+        <!-- Pretitle -->
+        <h1 class="h4 mt-1">Catatan Piutang</h1>
+      </div>
+      <div class="col-12 col-md-6 text-md-end">
+        <button type="button" class="btn btn-primary lift" data-bs-toggle="modal" data-bs-target="#tambah_piutang_modal">Tambah Piutang</button>
+      </div>
+    </div> <!-- Row end  -->
+  </div>
+</div>
 
-  <section class="content-header">
-    <h1>
-      Piutang
-      <small>Data Piutang</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Dashboard</li>
-    </ol>
-  </section>
+<!-- Body: Body -->
+<div class="body d-flex py-3">
+  <div class="container-xxl">
 
-  <section class="content">
-    <div class="row">
-      <section class="col-lg-12">
-        <div class="box box-info">
-
-          <div class="box-header">
-            <h3 class="box-title">Catatan Piutang</h3>
-            <div class="btn-group pull-right">
-
-              <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#tambah_piutang_modal">
-                <i class="fa fa-plus"></i> &nbsp Tambah Piutang
+    <!-- Modal Tambah -->
+    <div class="modal fade" id="tambah_piutang_modal" tabindex="-1" aria-labelledby="tambahPiutangLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="piutang.php" method="post">
+            <input type="hidden" name="action" value="add">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tambahPiutangLabel">Tambah Piutang</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
               </button>
             </div>
-          </div>
-          <div class="box-body">
-
-            <!-- Modal Tambah -->
-            <div class="modal fade" id="tambah_piutang_modal" tabindex="-1" aria-labelledby="tambahPiutangLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <form action="piutang.php" method="post">
-                    <input type="hidden" name="action" value="add">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="tambahPiutangLabel">Tambah Piutang</h5>
-                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <label>Tanggal</label>
-                        <input type="text" name="tanggal" required="required" class="form-control datepicker2">
-                      </div>
-                      <div class="form-group">
-                        <label>Nominal</label>
-                        <input type="number" name="nominal" required="required" class="form-control" placeholder="Masukkan Nominal ..">
-                      </div>
-                      <div class="form-group">
-                        <label>Keterangan</label>
-                        <textarea name="keterangan" class="form-control" rows="3"></textarea>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                  </form>
-                </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Tanggal</label>
+                <input type="date" name="tanggal" required="required" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Nominal</label>
+                <input type="number" name="nominal" required="required" class="form-control" placeholder="Masukkan Nominal ..">
+              </div>
+              <div class="form-group">
+                <label>Keterangan</label>
+                <textarea name="keterangan" class="form-control" rows="3"></textarea>
               </div>
             </div>
-
-            <div class="table-responsive">
-              <table class="table table-bordered table-striped" id="table-datatable">
-                <thead>
-                  <tr>
-                    <th width="1%">NO</th>
-                    <th width="1%">KODE</th>
-                    <th width="10%" class="text-center">TANGGAL</th>
-                    <th class="text-center">KETERANGAN</th>
-                    <th class="text-center">NOMINAL</th>
-                    <th width="10%" class="text-center">OPSI</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $no = 1;
-                  $data = mysqli_query($koneksi, "SELECT * FROM piutang");
-                  while ($d = mysqli_fetch_array($data)) {
-                  ?>
-                    <tr>
-                      <td class="text-center"><?php echo $no++; ?></td>
-                      <td>PTG-000<?php echo $d['piutang_id']; ?></td>
-                      <td class="text-center"><?php echo date('d-m-Y', strtotime($d['piutang_tanggal'])); ?></td>
-                      <td><?php echo $d['piutang_keterangan']; ?></td>
-                      <td class="text-center"><?php echo "Rp. " . number_format($d['piutang_nominal']) . " ,-"; ?></td>
-                      <td>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit_piutang_<?php echo $d['piutang_id'] ?>">
-                          <i class="fa fa-cog"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus_piutang_<?php echo $d['piutang_id'] ?>">
-                          <i class="fa fa-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
-          </div>
-
+          </form>
         </div>
-      </section>
+      </div>
     </div>
-  </section>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped" id="table-datatable">
+        <thead>
+          <tr>
+            <th width="1%">NO</th>
+            <th width="1%">KODE</th>
+            <th width="10%" class="text-center">TANGGAL</th>
+            <th class="text-center">KETERANGAN</th>
+            <th class="text-center">NOMINAL</th>
+            <th width="10%" class="text-center">OPSI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          $no = 1;
+          $data = mysqli_query($koneksi, "SELECT * FROM piutang");
+          while ($d = mysqli_fetch_array($data)) {
+          ?>
+            <tr>
+              <td class="text-center"><?php echo $no++; ?></td>
+              <td>PTG-000<?php echo $d['piutang_id']; ?></td>
+              <td class="text-center"><?php echo date('d-m-Y', strtotime($d['piutang_tanggal'])); ?></td>
+              <td><?php echo $d['piutang_keterangan']; ?></td>
+              <td class="text-center"><?php echo "Rp. " . number_format($d['piutang_nominal']) . " ,-"; ?></td>
+              <td>
+                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit_piutang_<?php echo $d['piutang_id'] ?>">
+                  <i class="fa fa-cog"></i>
+                </button>
 
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus_piutang_<?php echo $d['piutang_id'] ?>">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          <?php
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <?php
