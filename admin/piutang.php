@@ -1,4 +1,9 @@
 <?php
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
 // Check authentication
 if (!isset($_SESSION['status']) || $_SESSION['status'] != "administrator_logedin") {
   header("location:../index.php?alert=belum_login");
@@ -6,6 +11,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != "administrator_logedin
 }
 
 include '../koneksi.php';
+
 
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
