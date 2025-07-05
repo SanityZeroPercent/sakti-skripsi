@@ -134,12 +134,6 @@
                                 <label class="form-check-label" for="theme-high-contrast">Enable High Contrast</label>
                             </div>
                         </li>
-                        <li class="list-group-item d-flex align-items-center py-1 px-2">
-                            <div class="form-check form-switch theme-rtl mb-0">
-                                <input class="form-check-input" type="checkbox" id="theme-rtl">
-                                <label class="form-check-label" for="theme-rtl">Enable RTL Mode!</label>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
