@@ -1,226 +1,171 @@
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0
-    </div>
-    <strong>Copyright &copy; 2024</strong> - Majelis Perwakilan Khusus Yayasan Pelayanan Pekabaran Injil Indonesia Batu di Jakarta.
-  </footer>
+ <!-- Modal Custom Settings-->
+ <div class="modal fade right" id="Settingmodal" tabindex="-1" aria-hidden="true">
+     <div class="modal-dialog  modal-sm">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title">Custome Settings</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body custom_setting">
+                 <!-- Settings: Color -->
+                 <div class="setting-theme pb-3">
+                     <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-color-bucket fs-4 me-2 text-primary"></i>Template Color Settings</h6>
+                     <ul class="list-unstyled row row-cols-3 g-2 choose-skin mb-2 mt-2">
+                         <li data-theme="indigo">
+                             <div class="indigo"></div>
+                         </li>
+                         <li data-theme="tradewind">
+                             <div class="tradewind"></div>
+                         </li>
+                         <li data-theme="monalisa">
+                             <div class="monalisa"></div>
+                         </li>
+                         <li data-theme="blue">
+                             <div class="blue"></div>
+                         </li>
+                         <li data-theme="cyan">
+                             <div class="cyan"></div>
+                         </li>
+                         <li data-theme="green">
+                             <div class="green"></div>
+                         </li>
+                         <li data-theme="orange" class="active">
+                             <div class="orange"></div>
+                         </li>
+                         <li data-theme="blush">
+                             <div class="blush"></div>
+                         </li>
+                         <li data-theme="red">
+                             <div class="red"></div>
+                         </li>
+                     </ul>
+                 </div>
+                 <!-- Settings: Template dynamics -->
+                 <div class="dynamic-block py-3">
+                     <ul class="list-unstyled choose-skin mb-2 mt-1">
+                         <li data-theme="dynamic">
+                             <div class="dynamic"><i class="icofont-paint me-2"></i> Click to Dyanmic Setting</div>
+                         </li>
+                     </ul>
+                     <div class="dt-setting">
+                         <ul class="list-group list-unstyled mt-1">
+                             <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
+                                 <label>Primary Color</label>
+                                 <button id="primaryColorPicker" class="btn bg-primary avatar xs border-0 rounded-0"></button>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
+                                 <label>Secondary Color</label>
+                                 <button id="secondaryColorPicker" class="btn bg-secondary avatar xs border-0 rounded-0"></button>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
+                                 <label class="text-muted">Chart Color 1</label>
+                                 <button id="chartColorPicker1" class="btn chart-color1 avatar xs border-0 rounded-0"></button>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
+                                 <label class="text-muted">Chart Color 2</label>
+                                 <button id="chartColorPicker2" class="btn chart-color2 avatar xs border-0 rounded-0"></button>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
+                                 <label class="text-muted">Chart Color 3</label>
+                                 <button id="chartColorPicker3" class="btn chart-color3 avatar xs border-0 rounded-0"></button>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
+                                 <label class="text-muted">Chart Color 4</label>
+                                 <button id="chartColorPicker4" class="btn chart-color4 avatar xs border-0 rounded-0"></button>
+                             </li>
+                             <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
+                                 <label class="text-muted">Chart Color 5</label>
+                                 <button id="chartColorPicker5" class="btn chart-color5 avatar xs border-0 rounded-0"></button>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>
+                 <!-- Settings: Font -->
+                 <div class="setting-font py-3">
+                     <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-font fs-4 me-2 text-primary"></i> Font Settings</h6>
+                     <ul class="list-group font_setting mt-1">
+                         <li class="list-group-item py-1 px-2">
+                             <div class="form-check mb-0">
+                                 <input class="form-check-input" type="radio" name="font" id="font-poppins" value="font-poppins">
+                                 <label class="form-check-label" for="font-poppins">
+                                     Poppins Google Font
+                                 </label>
+                             </div>
+                         </li>
+                         <li class="list-group-item py-1 px-2">
+                             <div class="form-check mb-0">
+                                 <input class="form-check-input" type="radio" name="font" id="font-opensans" value="font-opensans">
+                                 <label class="form-check-label" for="font-opensans">
+                                     Open Sans Google Font
+                                 </label>
+                             </div>
+                         </li>
+                         <li class="list-group-item py-1 px-2">
+                             <div class="form-check mb-0">
+                                 <input class="form-check-input" type="radio" name="font" id="font-montserrat" value="font-montserrat">
+                                 <label class="form-check-label" for="font-montserrat">
+                                     Montserrat Google Font
+                                 </label>
+                             </div>
+                         </li>
+                         <li class="list-group-item py-1 px-2">
+                             <div class="form-check mb-0">
+                                 <input class="form-check-input" type="radio" name="font" id="font-Plex" value="font-Plex" checked="">
+                                 <label class="form-check-label" for="font-Plex">
+                                     Plex Google Font
+                                 </label>
+                             </div>
+                         </li>
+                     </ul>
+                 </div>
+                 <!-- Settings: Light/dark -->
+                 <div class="setting-mode py-3">
+                     <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-layout fs-4 me-2 text-primary"></i>Contrast Layout</h6>
+                     <ul class="list-group list-unstyled mb-0 mt-1">
+                         <li class="list-group-item d-flex align-items-center py-1 px-2">
+                             <div class="form-check form-switch theme-switch mb-0">
+                                 <input class="form-check-input" type="checkbox" id="theme-switch">
+                                 <label class="form-check-label" for="theme-switch">Enable Dark Mode!</label>
+                             </div>
+                         </li>
+                         <li class="list-group-item d-flex align-items-center py-1 px-2">
+                             <div class="form-check form-switch theme-high-contrast mb-0">
+                                 <input class="form-check-input" type="checkbox" id="theme-high-contrast">
+                                 <label class="form-check-label" for="theme-high-contrast">Enable High Contrast</label>
+                             </div>
+                         </li>
+                         <li class="list-group-item d-flex align-items-center py-1 px-2">
+                             <div class="form-check form-switch theme-rtl mb-0">
+                                 <input class="form-check-input" type="checkbox" id="theme-rtl">
+                                 <label class="form-check-label" for="theme-rtl">Enable RTL Mode!</label>
+                             </div>
+                         </li>
+                     </ul>
+                 </div>
+             </div>
+             <div class="modal-footer justify-content-start">
+                 <button type="button" class="btn btn-white border lift" data-dismiss="modal">Close</button>
+                 <button type="button" class="btn btn-primary lift">Save Changes</button>
+             </div>
+         </div>
+     </div>
+ </div>
 
+ </div>
 
-  </div>
+ </div>
 
+ <!-- Jquery Core Js -->
+ <script src="../assets/bundles/libscripts.bundle.js"></script>
 
-  <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
+ <!-- Plugin Js -->
+ <script src="../assets/bundles/dataTables.bundle.js"></script>
+ <script src="../assets/bundles/apexcharts.bundle.js"></script>
 
-  <script src="../assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
+ <!-- Jquery Page Js -->
+ <script src="../assets/js/template.js"></script>
+ <script src="../assets/js/page/index.js"></script>
+ 
+ </body>
 
-  <script>
-    $.widget.bridge('uibutton', $.ui.button);
-  </script>
-
-  <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-  <script src="../assets/bower_components/raphael/raphael.min.js"></script>
-  <script src="../assets/bower_components/morris.js/morris.min.js"></script>
-
-  <script src="../assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-  
-
-  <script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
-  <script src="../assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-  <script src="../assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-
-  <script src="../assets/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
-
-  <script src="../assets/bower_components/moment/min/moment.min.js"></script>
-  <script src="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-  <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-
-  <script src="../assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-
-  <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-
-  <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
-
-  <script src="../assets/dist/js/adminlte.min.js"></script>
-
-  <script src="../assets/dist/js/pages/dashboard.js"></script>
-
-  <script src="../assets/dist/js/demo.js"></script>
-  <script src="../assets/bower_components/ckeditor/ckeditor.js"></script>
-  <script src="../assets/bower_components/chart.js/Chart.min.js"></script>
-
-  <script>
-    
-
-    $('#datepicker').datepicker({
-      autoclose: true,
-      format: 'dd/mm/yyyy',
-    }).datepicker("setDate", new Date());
-
-    $('.datepicker2').datepicker({
-      autoclose: true,
-      format: 'yyyy/mm/dd',
-    });
-  </script>
-
-
-  <script>
-    var randomScalingFactor = function() {
-      return Math.round(Math.random() * 100)
-    };
-
-    var barChartData = {
-      labels: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
-      datasets: [{
-          label: 'Pemasukan',
-          fillColor: "rgba(51, 240, 113, 0.61)",
-          strokeColor: "rgba(11, 246, 88, 0.61)",
-          highlightFill: "rgba(220,220,220,0.75)",
-          highlightStroke: "rgba(220,220,220,1)",
-          data: [
-            <?php
-            for ($bulan = 1; $bulan <= 12; $bulan++) {
-              $thn_ini = date('Y');
-              $pemasukan = mysqli_query($koneksi, "select sum(transaksi_nominal) as total_pemasukan from transaksi where transaksi_jenis='Pemasukan' and month(transaksi_tanggal)='$bulan' and year(transaksi_tanggal)='$thn_ini'");
-              $pem = mysqli_fetch_assoc($pemasukan);
-
-              // $total = str_replace(",", "44", number_format($pem['total_pemasukan']));
-              $total = $pem['total_pemasukan'];
-              if ($pem['total_pemasukan'] == "") {
-                echo "0,";
-              } else {
-                echo $total . ",";
-              }
-            }
-            ?>
-          ]
-        },
-        {
-          label: 'Pengeluaran',
-          fillColor: "rgba(255, 51, 51, 0.8)",
-          strokeColor: "rgba(248, 5, 5, 0.8)",
-          highlightFill: "rgba(151,187,205,0.75)",
-          highlightStroke: "rgba(151,187,205,1)",
-          data: [
-            <?php
-            for ($bulan = 1; $bulan <= 12; $bulan++) {
-              $thn_ini = date('Y');
-              $pengeluaran = mysqli_query($koneksi, "select sum(transaksi_nominal) as total_pengeluaran from transaksi where transaksi_jenis='pengeluaran' and month(transaksi_tanggal)='$bulan' and year(transaksi_tanggal)='$thn_ini'");
-              $peng = mysqli_fetch_assoc($pengeluaran);
-
-              // $total = str_replace(",", "44", number_format($peng['total_pengeluaran']));
-              $total = $peng['total_pengeluaran'];
-              if ($peng['total_pengeluaran'] == "") {
-                echo "0,";
-              } else {
-
-                echo $total . ",";
-              }
-            }
-            ?>
-          ]
-        }
-      ]
-
-    }
-
-
-    var barChartData2 = {
-      labels: [
-        <?php
-        $tahun = mysqli_query($koneksi, "select distinct year(transaksi_tanggal) as tahun from transaksi order by year(transaksi_tanggal) asc");
-        while ($t = mysqli_fetch_array($tahun)) {
-        ?> "<?php echo $t['tahun']; ?>",
-        <?php
-        }
-        ?>
-      ],
-      datasets: [{
-          label: 'Pemasukan',
-          fillColor: "rgba(51, 240, 113, 0.61)",
-          strokeColor: "rgba(11, 246, 88, 0.61)",
-          highlightFill: "rgba(220,220,220,0.75)",
-          highlightStroke: "rgba(220,220,220,1)",
-          data: [
-            <?php
-            $tahun = mysqli_query($koneksi, "select distinct year(transaksi_tanggal) as tahun from transaksi order by year(transaksi_tanggal) asc");
-            while ($t = mysqli_fetch_array($tahun)) {
-              $thn = $t['tahun'];
-              $pemasukan = mysqli_query($koneksi, "select sum(transaksi_nominal) as total_pemasukan from transaksi where transaksi_jenis='Pemasukan' and year(transaksi_tanggal)='$thn'");
-              $pem = mysqli_fetch_assoc($pemasukan);
-              $total = $pem['total_pemasukan'];
-              if ($pem['total_pemasukan'] == "") {
-                echo "0,";
-              } else {
-                echo $total . ",";
-              }
-            }
-            ?>
-          ]
-        },
-        {
-          label: 'Pengeluaran',
-          fillColor: "rgba(255, 51, 51, 0.8)",
-          strokeColor: "rgba(248, 5, 5, 0.8)",
-          highlightFill: "rgba(151,187,205,0.75)",
-          highlightStroke: "rgba(254, 29, 29, 0)",
-          data: [
-            <?php
-            $tahun = mysqli_query($koneksi, "select distinct year(transaksi_tanggal) as tahun from transaksi order by year(transaksi_tanggal) asc");
-            while ($t = mysqli_fetch_array($tahun)) {
-              $thn = $t['tahun'];
-              $pemasukan = mysqli_query($koneksi, "select sum(transaksi_nominal) as total_pengeluaran from transaksi where transaksi_jenis='Pengeluaran' and year(transaksi_tanggal)='$thn'");
-              $pem = mysqli_fetch_assoc($pemasukan);
-              $total = $pem['total_pengeluaran'];
-              if ($pem['total_pengeluaran'] == "") {
-                echo "0,";
-              } else {
-                echo $total . ",";
-              }
-            }
-            ?>
-          ]
-        }
-      ]
-
-    }
-
-
-
-    window.onload = function() {
-      var ctx = document.getElementById("grafik1").getContext("2d");
-      window.myBar = new Chart(ctx).Bar(barChartData, {
-        responsive: true,
-        animation: true,
-        barValueSpacing: 5,
-        barDatasetSpacing: 1,
-        tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %> - Rp.<%= value.toLocaleString() %>,-"
-      });
-
-      var ctx = document.getElementById("grafik2").getContext("2d");
-      window.myBar = new Chart(ctx).Bar(barChartData2, {
-        responsive: true,
-        animation: true,
-        barValueSpacing: 5,
-        barDatasetSpacing: 1,
-        tooltipFillColor: "rgba(0,0,0,0.8)",
-        multiTooltipTemplate: "<%= datasetLabel %> - Rp.<%= value.toLocaleString() %>,-"
-      });
-
-
-
-
-
-
-
-    }
-  </script>
-
-  </body>
-
-  </html>
+ </html>
