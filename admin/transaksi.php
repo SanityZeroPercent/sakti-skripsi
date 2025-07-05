@@ -118,181 +118,164 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
 ?>
 <?php include 'header.php'; ?>
 
-<div class="content-wrapper">
+<!-- Body: Titel Header -->
+<div class="body-header border-bottom d-flex py-3">
+  <div class="container-xxl">
+    <div class="row align-items-center g-2">
+      <div class="col">
+        <!-- Pretitle -->
+        <h1 class="h4 mt-1">Transaksi Pemasukan & Pengeluaran</h1>
+      </div>
+      <div class="col-12 col-md-6 text-md-end">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#tambah_transaksi_modal" class="btn btn-primary lift">Tambah Transaksi</button>
+      </div>
+    </div> <!-- Row end  -->
+  </div>
+</div>
 
-  <section class="content-header">
-    <h1>
-      Transaksi
-      <small>Data Transaksi</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Dashboard</li>
-    </ol>
-  </section>
-
-  <section class="content">
-    <div class="row">
-      <section class="col-lg-12">
-        <div class="box box-info">
-
-          <div class="box-header">
-            <h3 class="box-title">Transaksi Pemasukan & Pengeluaran</h3>
-            <div class="btn-group pull-right">
-
-              <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#tambah_transaksi_modal">
-                <i class="fa fa-plus"></i> &nbsp Tambah Transaksi
+<!-- Body: Body -->
+<div class="body d-flex py-3">
+  <div class="container-xxl">
+    <!-- Modal Tambah -->
+    <div class="modal fade" id="tambah_transaksi_modal" tabindex="-1" aria-labelledby="tambahTransaksiLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="transaksi.php" method="post">
+            <input type="hidden" name="action" value="add">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tambahTransaksiLabel">Tambah Transaksi</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
               </button>
             </div>
-          </div>
-          <div class="box-body">
-
-            <!-- Modal Tambah -->
-            <div class="modal fade" id="tambah_transaksi_modal" tabindex="-1" aria-labelledby="tambahTransaksiLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <form action="transaksi.php" method="post">
-                    <input type="hidden" name="action" value="add">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="tambahTransaksiLabel">Tambah Transaksi</h5>
-                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <label>Tanggal</label>
-                        <input type="date" name="tanggal" required="required" class="form-control">
-                      </div>
-                      <div class="form-group">
-                        <label>Jenis</label>
-                        <select name="jenis" class="form-control" required="required">
-                          <option value="">- Pilih -</option>
-                          <option value="Pemasukan">Pemasukan</option>
-                          <option value="Pengeluaran">Pengeluaran</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label>Kategori</label>
-                        <select name="kategori" class="form-control" required="required">
-                          <option value="">- Pilih -</option>
-                          <?php
-                          $kategori_data = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY kategori ASC");
-                          while ($k = mysqli_fetch_array($kategori_data)) {
-                          ?>
-                            <option value="<?php echo $k['kategori_id']; ?>"><?php echo $k['kategori']; ?></option>
-                          <?php
-                          }
-                          ?>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label>Nominal</label>
-                        <input type="number" name="nominal" required="required" class="form-control" placeholder="Masukkan Nominal ..">
-                      </div>
-                      <div class="form-group">
-                        <label>Keterangan</label>
-                        <textarea name="keterangan" class="form-control" rows="3"></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label>Rekening Bank</label>
-                        <select name="bank" class="form-control" required="required">
-                          <option value="">- Pilih -</option>
-                          <?php
-                          $bank_data = mysqli_query($koneksi, "SELECT * FROM bank");
-                          while ($b = mysqli_fetch_array($bank_data)) {
-                          ?>
-                            <option value="<?php echo $b['bank_id']; ?>"><?php echo $b['bank_nama']; ?></option>
-                          <?php
-                          }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                  </form>
-                </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Tanggal</label>
+                <input type="date" name="tanggal" required="required" class="form-control">
               </div>
-            </div>
-
-            <div class="table-responsive">
-              <table class="table table-bordered table-striped" id="table-datatable">
-                <thead>
-                  <tr>
-                    <th width="1%" rowspan="2">NO</th>
-                    <th width="10%" rowspan="2" class="text-center">TANGGAL</th>
-                    <th rowspan="2" class="text-center">KATEGORI</th>
-                    <th rowspan="2" class="text-center">KETERANGAN</th>
-                    <th rowspan="2" class="text-center">REKENING BANK</th> <!-- Add this line -->
-                    <th colspan="2" class="text-center">JENIS</th>
-                    <th rowspan="2" width="10%" class="text-center">OPSI</th>
-                  </tr>
-                  <tr>
-                    <th class="text-center">PEMASUKAN</th>
-                    <th class="text-center">PENGELUARAN</th>
-                  </tr>
-                </thead>
-                <tbody>
+              <div class="form-group">
+                <label>Jenis</label>
+                <select name="jenis" class="form-control" required="required">
+                  <option value="">- Pilih -</option>
+                  <option value="Pemasukan">Pemasukan</option>
+                  <option value="Pengeluaran">Pengeluaran</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Kategori</label>
+                <select name="kategori" class="form-control" required="required">
+                  <option value="">- Pilih -</option>
                   <?php
-                  include '../koneksi.php';
-                  $no = 1;
-                  $data = mysqli_query($koneksi, "SELECT transaksi.*, kategori.kategori, bank.* FROM transaksi
-                                        JOIN kategori ON kategori.kategori_id = transaksi.transaksi_kategori
-                                        JOIN bank ON bank.bank_id = transaksi.transaksi_bank
-                                        ORDER BY transaksi_id DESC");
-                  while ($d = mysqli_fetch_array($data)) {
+                  $kategori_data = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY kategori ASC");
+                  while ($k = mysqli_fetch_array($kategori_data)) {
                   ?>
-                    <tr>
-                      <td class="text-center"><?php echo $no++; ?></td>
-                      <td class="text-center"><?php echo date('d-m-Y', strtotime($d['transaksi_tanggal'])); ?></td>
-                      <td><?php echo $d['kategori']; ?></td>
-                      <td><?php echo $d['transaksi_keterangan']; ?></td>
-                      <td><?php echo $d['bank_nama']; ?> <br> <?php echo $d['bank_nomor']; ?> <br> a.n. <?php echo $d['bank_pemilik']; ?></td> <!-- Add this line -->
-
-                      <td class="text-center">
-                        <?php
-                        if ($d['transaksi_jenis'] == "Pemasukan") {
-                          echo "Rp. " . number_format($d['transaksi_nominal']) . " ,-";
-                        } else {
-                          echo "-";
-                        }
-                        ?>
-                      </td>
-                      <td class="text-center">
-                        <?php
-                        if ($d['transaksi_jenis'] == "Pengeluaran") {
-                          echo "Rp. " . number_format($d['transaksi_nominal']) . " ,-";
-                        } else {
-                          echo "-";
-                        }
-                        ?>
-                      </td>
-                      <td>
-                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit_transaksi_<?php echo $d['transaksi_id'] ?>">
-                          <i class="fa fa-cog"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus_transaksi_<?php echo $d['transaksi_id'] ?>">
-                          <i class="fa fa-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
+                    <option value="<?php echo $k['kategori_id']; ?>"><?php echo $k['kategori']; ?></option>
                   <?php
                   }
                   ?>
-                </tbody>
-              </table>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Nominal</label>
+                <input type="number" name="nominal" required="required" class="form-control" placeholder="Masukkan Nominal ..">
+              </div>
+              <div class="form-group">
+                <label>Keterangan</label>
+                <textarea name="keterangan" class="form-control" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Rekening Bank</label>
+                <select name="bank" class="form-control" required="required">
+                  <option value="">- Pilih -</option>
+                  <?php
+                  $bank_data = mysqli_query($koneksi, "SELECT * FROM bank");
+                  while ($b = mysqli_fetch_array($bank_data)) {
+                  ?>
+                    <option value="<?php echo $b['bank_id']; ?>"><?php echo $b['bank_nama']; ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
             </div>
-          </div>
-
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+          </form>
         </div>
-      </section>
+      </div>
     </div>
-  </section>
 
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped" id="table-datatable">
+        <thead>
+          <tr>
+            <th width="1%" rowspan="2">NO</th>
+            <th width="10%" rowspan="2" class="text-center">TANGGAL</th>
+            <th rowspan="2" class="text-center">KATEGORI</th>
+            <th rowspan="2" class="text-center">KETERANGAN</th>
+            <th rowspan="2" class="text-center">REKENING BANK</th> <!-- Add this line -->
+            <th colspan="2" class="text-center">JENIS</th>
+            <th rowspan="2" width="10%" class="text-center">OPSI</th>
+          </tr>
+          <tr>
+            <th class="text-center">PEMASUKAN</th>
+            <th class="text-center">PENGELUARAN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          include '../koneksi.php';
+          $no = 1;
+          $data = mysqli_query($koneksi, "SELECT transaksi.*, kategori.kategori, bank.* FROM transaksi
+                                        JOIN kategori ON kategori.kategori_id = transaksi.transaksi_kategori
+                                        JOIN bank ON bank.bank_id = transaksi.transaksi_bank
+                                        ORDER BY transaksi_id DESC");
+          while ($d = mysqli_fetch_array($data)) {
+          ?>
+            <tr>
+              <td class="text-center"><?php echo $no++; ?></td>
+              <td class="text-center"><?php echo date('d-m-Y', strtotime($d['transaksi_tanggal'])); ?></td>
+              <td><?php echo $d['kategori']; ?></td>
+              <td><?php echo $d['transaksi_keterangan']; ?></td>
+              <td><?php echo $d['bank_nama']; ?> <br> <?php echo $d['bank_nomor']; ?> <br> a.n. <?php echo $d['bank_pemilik']; ?></td> <!-- Add this line -->
+
+              <td class="text-center">
+                <?php
+                if ($d['transaksi_jenis'] == "Pemasukan") {
+                  echo "Rp. " . number_format($d['transaksi_nominal']) . " ,-";
+                } else {
+                  echo "-";
+                }
+                ?>
+              </td>
+              <td class="text-center">
+                <?php
+                if ($d['transaksi_jenis'] == "Pengeluaran") {
+                  echo "Rp. " . number_format($d['transaksi_nominal']) . " ,-";
+                } else {
+                  echo "-";
+                }
+                ?>
+              </td>
+              <td>
+                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit_transaksi_<?php echo $d['transaksi_id'] ?>">
+                  <i class="fa fa-cog"></i>
+                </button>
+
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus_transaksi_<?php echo $d['transaksi_id'] ?>">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          <?php
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <?php
