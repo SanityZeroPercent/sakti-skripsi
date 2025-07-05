@@ -1,286 +1,205 @@
-<?php include 'header.php'; ?>
+<?php
+$page_title = 'Dashboard'; // Used to identify page in footer
+include 'header.php';
+?>
 
-<div class="content-wrapper">
-
-    <section class="content-header">
-        <h1>
-            Dashboard
-            <small>Control panel</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
-        </ol>
-    </section>
-
-
-    <section class="content">
-
-        <div class="row">
-
-            <div class="col-lg-3 col-xs-6">
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <?php
-                        $tanggal = date('Y-m-d');
-                        $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and transaksi_tanggal='$tanggal'");
-                        $p = mysqli_fetch_assoc($pemasukan);
-                        ?>
-                        <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></h4>
-                        <p>Pemasukan Hari Ini</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="bank.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <div class="small-box bg-blue">
-                    <div class="inner">
-                        <?php
-                        $bulan = date('m');
-                        $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and month(transaksi_tanggal)='$bulan'");
-                        $p = mysqli_fetch_assoc($pemasukan);
-                        ?>
-                        <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></h4>
-                        <p>Pemasukan Bulan Ini</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="bank.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <div class="small-box bg-orange">
-                    <div class="inner">
-                        <?php
-                        $tahun = date('Y');
-                        $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and year(transaksi_tanggal)='$tahun'");
-                        $p = mysqli_fetch_assoc($pemasukan);
-                        ?>
-                        <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></h4>
-                        <p>Pemasukan Tahun Ini</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="bank.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <div class="small-box bg-black">
-                    <div class="inner">
-                        <?php
-                        $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan'");
-                        $p = mysqli_fetch_assoc($pemasukan);
-                        ?>
-                        <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></h4>
-                        <p>Seluruh Pemasukan</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="bank.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-
-
-            <div class="col-lg-3 col-xs-6">
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <?php
-                        $tanggal = date('Y-m-d');
-                        $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran' and transaksi_tanggal='$tanggal'");
-                        $p = mysqli_fetch_assoc($pengeluaran);
-                        ?>
-
-                        <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></h4>
-                        <p>Pengeluaran Hari Ini</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="bank.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <?php
-                        $bulan = date('m');
-                        $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran' and month(transaksi_tanggal)='$bulan'");
-                        $p = mysqli_fetch_assoc($pengeluaran);
-                        ?>
-
-                        <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></h4>
-                        <p>Pengeluaran Bulan Ini</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="bank.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <?php
-                        $tahun = date('Y');
-                        $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran' and year(transaksi_tanggal)='$tahun'");
-                        $p = mysqli_fetch_assoc($pengeluaran);
-                        ?>
-
-                        <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></h4>
-                        <p>Pengeluaran Tahun Ini</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="bank.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-xs-6">
-                <div class="small-box bg-black">
-                    <div class="inner">
-                        <?php
-                        $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran'");
-                        $p = mysqli_fetch_assoc($pengeluaran);
-                        ?>
-                        <h4 style="font-weight: bolder"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></h4>
-                        <p>Seluruh Pengeluaran</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
-                    </div>
-                    <a href="bank.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-
-            <!-- Left col -->
-            <section class="col-lg-8">
-
-                <div class="nav-tabs-custom">
-
-                    <ul class="nav nav-tabs pull-right">
-                        <!-- <li><a href="#tab2" data-toggle="tab">Pemasukan</a></li> -->
-                        <li class="active"><a href="#tab1" data-toggle="tab">Pemasukan & Pengeluaran</a></li>
-                        <li class="pull-left header">Grafik</li>
-                    </ul>
-
-                    <div class="tab-content" style="padding: 20px">
-
-                        <div class="chart tab-pane active" id="tab1">
-
-
-                            <h4 class="text-center">Grafik Data Pemasukan & Pengeluaran Per <b>Bulan</b></h4>
-                            <canvas id="grafik1" style="position: relative; height: 300px;"></canvas>
-
-                            <br />
-                            <br />
-                            <br />
-
-                            <h4 class="text-center">Grafik Data Pemasukan & Pengeluaran Per <b>Tahun</b></h4>
-                            <canvas id="grafik2" style="position: relative; height: 300px;"></canvas>
-
-                        </div>
-                        <div class="chart tab-pane" id="tab2" style="position: relative; height: 300px;">
-                            b
+<div class="body d-flex py-3">
+    <div class="container-xxl">
+        <div class="row g-3 mb-3 row-cols-1 row-cols-md-2 row-cols-lg-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-fill text-truncate">
+                            <span class="text-muted small text-uppercase"> <i class="fa fa-level-up"></i> Pemasukan Hari Ini</span>
+                            <div class="d-flex flex-column">
+                                <div class="price-block">
+                                    <?php
+                                    $tanggal = date('Y-m-d');
+                                    $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and transaksi_tanggal='$tanggal'");
+                                    $p = mysqli_fetch_assoc($pemasukan);
+                                    ?>
+                                    <span class="fs-6 fw-bold color-price-up"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-
-            </section>
-            <!-- /.Left col -->
-
-
-            <section class="col-lg-4">
-
-
-                <!-- Calendar -->
-                <div class="box box-solid bg-green-gradient">
-                    <div class="box-header">
-                        <i class="fa fa-calendar"></i>
-                        <h3 class="box-title">Kalender</h3>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-fill text-truncate">
+                            <span class="text-muted small text-uppercase"> <i class="fa fa-level-up"></i> Pemasukan Bulan Ini</span>
+                            <div class="d-flex flex-column">
+                                <div class="price-block">
+                                    <?php
+                                    $bulan = date('m');
+                                    $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and month(transaksi_tanggal)='$bulan'");
+                                    $p = mysqli_fetch_assoc($pemasukan);
+                                    ?>
+                                    <span class="fs-6 fw-bold color-price-up"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                        <!--The calendar -->
-                        <div id="calendar" style="width: 100%"></div>
-                    </div>
-                    <!-- /.box-body -->
                 </div>
-
-
-            </section>
-            <!-- right col -->
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-fill text-truncate">
+                            <span class="text-muted small text-uppercase"> <i class="fa fa-level-up"></i> Pemasukan Tahun Ini</span>
+                            <div class="d-flex flex-column">
+                                <div class="price-block">
+                                    <?php
+                                    $tahun = date('Y');
+                                    $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan' and year(transaksi_tanggal)='$tahun'");
+                                    $p = mysqli_fetch_assoc($pemasukan);
+                                    ?>
+                                    <span class="fs-6 fw-bold color-price-up"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-fill text-truncate">
+                            <span class="text-muted small text-uppercase"> <i class="fa fa-level-up"></i> Seluruh Pemasukan</span>
+                            <div class="d-flex flex-column">
+                                <div class="price-block">
+                                    <?php
+                                    $pemasukan = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pemasukan FROM transaksi WHERE transaksi_jenis='Pemasukan'");
+                                    $p = mysqli_fetch_assoc($pemasukan);
+                                    ?>
+                                    <span class="fs-6 fw-bold color-price-up"><?php echo "Rp. " . number_format($p['total_pemasukan']) . " ,-" ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row End -->
+        <div class="row g-3 mb-3 row-cols-1 row-cols-md-2 row-cols-lg-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-fill text-truncate">
+                            <span class="text-muted small text-uppercase"> <i class="fa fa-level-down"></i> Pengeluaran Hari Ini</span>
+                            <div class="d-flex flex-column">
+                                <div class="price-block">
+                                    <?php
+                                    $tanggal = date('Y-m-d');
+                                    $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran' and transaksi_tanggal='$tanggal'");
+                                    $p = mysqli_fetch_assoc($pengeluaran);
+                                    ?>
+                                    <span class="fs-6 fw-bold color-price-down"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-fill text-truncate">
+                            <span class="text-muted small text-uppercase"> <i class="fa fa-level-down"></i> Pengeluaran Bulan Ini</span>
+                            <div class="d-flex flex-column">
+                                <div class="price-block">
+                                    <?php
+                                    $bulan = date('m');
+                                    $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran' and month(transaksi_tanggal)='$bulan'");
+                                    $p = mysqli_fetch_assoc($pengeluaran);
+                                    ?>
+                                    <span class="fs-6 fw-bold color-price-down"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-fill text-truncate">
+                            <span class="text-muted small text-uppercase"> <i class="fa fa-level-down"></i> Pengeluaran Tahun Ini</span>
+                            <div class="d-flex flex-column">
+                                <div class="price-block">
+                                    <?php
+                                    $tahun = date('Y');
+                                    $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran' and year(transaksi_tanggal)='$tahun'");
+                                    $p = mysqli_fetch_assoc($pengeluaran);
+                                    ?>
+                                    <span class="fs-6 fw-bold color-price-down"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex-fill text-truncate">
+                            <span class="text-muted small text-uppercase"> <i class="fa fa-level-down"></i> Seluruh Pengeluaran</span>
+                            <div class="d-flex flex-column">
+                                <div class="price-block">
+                                    <?php
+                                    $pengeluaran = mysqli_query($koneksi, "SELECT sum(transaksi_nominal) as total_pengeluaran FROM transaksi WHERE transaksi_jenis='pengeluaran'");
+                                    $p = mysqli_fetch_assoc($pengeluaran);
+                                    ?>
+                                    <span class="fs-6 fw-bold color-price-down"><?php echo "Rp. " . number_format($p['total_pengeluaran']) . " ,-" ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row End -->
+        <div class="row g-3 mb-3 row-deck">
+            <div class="col-xl-8 col-xxl-7">
+                <div class="card">
+                    <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom align-items-center flex-wrap">
+                        <h6 class="mb-0 fw-bold">Grafik Data Pemasukan & Pengeluaran</h6>
+                        <ul class="nav nav-tabs tab-body-header rounded d-inline-flex mt-2 mt-md-0" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#bulan" role="tab">Per Bulan</a></li>
+                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tahun" role="tab">Per Tahun</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="bulan">
+                                <div class="row g-3">
+                                    <div id="apex-stacked-area"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tahun">
+                                <div class="row g-3">
+                                    <div id="apex-stacked-bar-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-xxl-5">
+                <div class="card">
+                    <div class="card-header py-3 d-flex flex-wrap justify-content-between align-items-center bg-transparent border-bottom-0">
+                        <h6 class="mb-0 fw-bold">Perbandingan Seluruh Pemasukan dan Pengeluaran</h6>
+                    </div>
+                    <div class="card-body">
+                        <div id="apex-simple-donut"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.row (main row) -->
-
-
-
-
-
-
-
-
-
-
-    </section>
-
+    </div><!-- Row End -->
+    <div class="row g-3 mb-3 row-deck">
+    </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 <?php include 'footer.php'; ?>
