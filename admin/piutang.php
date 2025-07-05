@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Check authentication
-if (!isset($_SESSION['status']) || $_SESSION['status'] != "administrator_logedin") {
+if (!isset($_SESSION['status']) || ($_SESSION['status'] != "administrator_logedin" && $_SESSION['status'] != "manajemen_logedin")) {
   header("location:../index.php?alert=belum_login");
   exit();
 }

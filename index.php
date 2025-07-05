@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username']) && isset($
                 exit();
             } else if ($data['user_level'] == "manajemen") {
                 $_SESSION['status'] = "manajemen_logedin";
-                header("location:manajemen/");
+                header("location:admin/");
                 exit();
             } else {
                 header("location:index.php?alert=gagal");

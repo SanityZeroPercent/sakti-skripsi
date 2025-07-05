@@ -52,6 +52,7 @@
                               </div>
                           </a>
                       </li>
+                      <?php if ($_SESSION['level'] == 'administrator') { ?>
                       <li>
                           <a class="m-link <?php echo ($current_page == 'kategori.php') ? 'active' : ''; ?>" href="kategori.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
@@ -63,6 +64,7 @@
                               </div>
                           </a>
                       </li>
+                      <?php } ?>
                       <li>
                           <a class="m-link <?php echo ($current_page == 'transaksi.php') ? 'active' : ''; ?>" href="transaksi.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
@@ -91,6 +93,7 @@
                               <li><a class="ms-link <?php echo ($current_page == 'piutang.php') ? 'active' : ''; ?>" href="piutang.php">Catatan Piutang</a></li>
                           </ul>
                       </li>
+                      <?php if ($_SESSION['level'] == 'administrator') { ?>
                       <li>
                           <a class="m-link <?php echo ($current_page == 'bank.php') ? 'active' : ''; ?>" href="bank.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
@@ -102,6 +105,8 @@
                               </div>
                           </a>
                       </li>
+                      <?php } ?>
+                      <?php if ($_SESSION['level'] == 'administrator') { ?>
                       <li>
                           <a class="m-link <?php echo ($current_page == 'user.php') ? 'active' : ''; ?>" href="user.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
@@ -113,6 +118,7 @@
                               </div>
                           </a>
                       </li>
+                      <?php } ?>
                       <li>
                           <a class="m-link <?php echo ($current_page == 'laporan.php') ? 'active' : ''; ?>" href="laporan.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">

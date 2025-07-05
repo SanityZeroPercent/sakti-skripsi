@@ -1,4 +1,15 @@
 <?php
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
+// Check authentication BEFORE including header
+if (!isset($_SESSION['status']) || ($_SESSION['status'] != "administrator_logedin" && $_SESSION['status'] != "manajemen_logedin")) {
+    header("location:../index.php?alert=belum_login");
+    exit();
+}
+
 $page_title = 'Dashboard'; // Used to identify page in footer
 include 'header.php';
 ?>
