@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nomor = $_POST['nomor'];
     $saldo = $_POST['saldo'];
 
-    mysqli_query($koneksi, "INSERT INTO bank VALUES (NULL,'$nama','$pemilik','$nomor','$saldo')");
+    mysqli_query($koneksi, "INSERT INTO bank (bank_nama, bank_pemilik, bank_nomor, bank_saldo) VALUES ('$nama','$pemilik','$nomor','$saldo')");
     header("location:bank.php?status=added");
     exit();
   }
