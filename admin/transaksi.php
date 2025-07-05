@@ -162,7 +162,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
                     <div class="modal-body">
                       <div class="form-group">
                         <label>Tanggal</label>
-                        <input type="text" name="tanggal" required="required" class="form-control datepicker2">
+                        <input type="date" name="tanggal" required="required" class="form-control">
                       </div>
                       <div class="form-group">
                         <label>Jenis</label>

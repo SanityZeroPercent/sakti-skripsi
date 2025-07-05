@@ -3,7 +3,7 @@
     <div class="modal-dialog  modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Custome Settings</h5>
+                <h5 class="modal-title">Custom Settings</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body custom_setting">
@@ -44,7 +44,7 @@
                 <div class="dynamic-block py-3">
                     <ul class="list-unstyled choose-skin mb-2 mt-1">
                         <li data-theme="dynamic">
-                            <div class="dynamic"><i class="icofont-paint me-2"></i> Click to Dyanmic Setting</div>
+                            <div class="dynamic"><i class="icofont-paint me-2"></i> Use Dynamic Template</div>
                         </li>
                     </ul>
                     <div class="dt-setting">
