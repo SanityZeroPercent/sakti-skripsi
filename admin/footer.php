@@ -166,6 +166,55 @@
 <!-- Jquery Page Js -->
 <script src="../assets/js/template.js"></script>
 
+<!-- DataTables initialization for common tables -->
+<script>
+    $(document).ready(function() {
+        // Initialize DataTables for common table ID
+        if ($('#table-datatable').length) {
+            $('#table-datatable').DataTable({
+                responsive: true,
+                pageLength: 10,
+                language: {
+                    "decimal": "",
+                    "emptyTable": "Tidak ada data tersedia",
+                    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+                    "infoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
+                    "infoFiltered": "(disaring dari _MAX_ total entri)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Tampilkan _MENU_ entri",
+                    "loadingRecords": "Memuat...",
+                    "processing": "Memproses...",
+                    "search": "Cari:",
+                    "zeroRecords": "Tidak ada data yang cocok ditemukan",
+                    "paginate": {
+                        "first": "Pertama",
+                        "last": "Terakhir",
+                        "next": "Berikutnya",
+                        "previous": "Sebelumnya"
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+<?php if (isset($page_title) && $page_title == 'User Management') : ?>
+    <script>
+        $(document).ready(function() {
+            $('#myProjectTable')
+                .addClass('nowrap')
+                .dataTable({
+                    responsive: true,
+                    columnDefs: [{
+                        targets: [-1, -3],
+                        className: 'dt-body-right'
+                    }]
+                });
+        });
+    </script>
+<?php endif; ?>
+
 <?php if (isset($page_title) && $page_title == 'Dashboard') : ?>
     <script>
         // per bulan pemasukan & pengeluaran
