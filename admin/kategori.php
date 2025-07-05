@@ -49,113 +49,96 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
 }
 ?>
 <?php include 'header.php'; ?>
-
-<div class="content-wrapper">
-
-  <section class="content-header">
-    <h1>
-      Kategori
-      <small>Data kategori</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Dashboard</li>
-    </ol>
-  </section>
-
-  <section class="content">
-    <div class="row">
-      <section class="col-lg-12">
-        <div class="box box-info">
-
-          <div class="box-header">
-            <h3 class="box-title">Kategori Transaksi Keuangan</h3>
-            <div class="btn-group pull-right">
-
-              <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#tambahKategoriModal">
-                <i class="fa fa-plus"></i> &nbsp Tambah Kategori
-              </button>
-            </div>
-          </div>
-          <div class="box-body">
-
-            <!-- Modal Tambah -->
-            <div class="modal fade" id="tambahKategoriModal" tabindex="-1" aria-labelledby="tambahKategoriModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <form action="kategori.php" method="post">
-                    <input type="hidden" name="action" value="add">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="tambahKategoriModalLabel">Tambah Kategori</h5>
-                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-group">
-                        <label>Nama Kategori</label>
-                        <input type="text" name="kategori" required="required" class="form-control" placeholder="Nama Kategori ..">
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="table-responsive">
-              <table class="table table-bordered table-striped" id="table-datatable">
-                <thead>
-                  <tr>
-                    <th width="1%">NO</th>
-                    <th>NAMA</th>
-                    <th width="10%">OPSI</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  include '../koneksi.php';
-                  $no = 1;
-                  $data = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY kategori ASC");
-                  while ($d = mysqli_fetch_array($data)) {
-                  ?>
-                    <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['kategori']; ?></td>
-                      <td>
-                        <?php
-                        if ($d['kategori_id'] != 1) {
-                        ?>
-                          <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit_kategori_<?php echo $d['kategori_id'] ?>">
-                            <i class="fa fa-cog"></i>
-                          </button>
-
-                          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus_kategori_<?php echo $d['kategori_id'] ?>">
-                            <i class="fa fa-trash"></i>
-                          </button>
-                        <?php
-                        }
-                        ?>
-                      </td>
-                    </tr>
-                  <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-        </div>
-      </section>
-    </div>
-  </section>
-
+<!-- Body: Titel Header -->
+<div class="body-header border-bottom d-flex py-3">
+  <div class="container-xxl">
+    <div class="row align-items-center g-2">
+      <div class="col">
+        <!-- Pretitle -->
+        <h1 class="h4 mt-1">Kelola Kategori Transaksi</h1>
+      </div>
+      <div class="col-12 col-md-6 text-md-end">
+        <button type="button" class="btn btn-dark lift" data-bs-toggle="modal" data-bs-target="#tambahKategoriModal">Tambah Kategori</button>
+      </div>
+    </div> <!-- Row end  -->
+  </div>
 </div>
+
+
+<!-- Modal Tambah -->
+<div class="modal fade" id="tambahKategoriModal" tabindex="-1" aria-labelledby="tambahKategoriModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form action="kategori.php" method="post">
+        <input type="hidden" name="action" value="add">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tambahKategoriModalLabel">Tambah Kategori</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nama Kategori</label>
+            <input type="text" name="kategori" required="required" class="form-control" placeholder="Nama Kategori ..">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Body: Body -->
+<div class="body d-flex py-3">
+  <div class="container-xxl">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped" id="table-datatable">
+        <thead>
+          <tr>
+            <th width="1%">NO</th>
+            <th>NAMA</th>
+            <th width="10%">OPSI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          include '../koneksi.php';
+          $no = 1;
+          $data = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY kategori ASC");
+          while ($d = mysqli_fetch_array($data)) {
+          ?>
+            <tr>
+              <td><?php echo $no++; ?></td>
+              <td><?php echo $d['kategori']; ?></td>
+              <td>
+                <?php
+                if ($d['kategori_id'] != 1) {
+                ?>
+                  <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit_kategori_<?php echo $d['kategori_id'] ?>">
+                    <i class="fa fa-cog"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus_kategori_<?php echo $d['kategori_id'] ?>">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                <?php
+                }
+                ?>
+              </td>
+            </tr>
+          <?php
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 
 <?php
 // Modals for Edit and Delete
