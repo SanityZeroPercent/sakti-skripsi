@@ -58,7 +58,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
         <h1 class="h4 mt-1">Kelola Kategori Transaksi</h1>
       </div>
       <div class="col-12 col-md-6 text-md-end">
-        <button type="button" class="btn btn-dark lift" data-bs-toggle="modal" data-bs-target="#tambahKategoriModal">Tambah Kategori</button>
+        <button type="button" class="btn btn-primary lift" data-bs-toggle="modal" data-bs-target="#tambahKategoriModal">Tambah Kategori</button>
       </div>
     </div> <!-- Row end  -->
   </div>

@@ -146,7 +146,7 @@ include 'header.php'; ?>
       </div>
     </div>
 
-    <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width: 100%;">
+    <table id="table-datatable" class="table table-hover align-middle mb-0" style="width: 100%;">
       <thead>
         <tr>
           <th>No.</th>
