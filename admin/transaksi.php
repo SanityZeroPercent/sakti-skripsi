@@ -181,7 +181,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
               </div>
               <div class="form-group">
                 <label>Keterangan</label>
-                <textarea name="keterangan" class="form-control" rows="3"></textarea>
+                <textarea name="keterangan" class="form-control" rows="3" maxlength="15" placeholder="Maksimal 15 karakter"></textarea>
               </div>
               <div class="form-group">
                 <label>Rekening Bank</label>
@@ -332,7 +332,7 @@ while ($d = mysqli_fetch_array($data)) {
             </div>
             <div class="form-group">
               <label>Keterangan</label>
-              <textarea name="keterangan" class="form-control" rows="3"><?php echo $d['transaksi_keterangan']; ?></textarea>
+              <textarea name="keterangan" class="form-control" rows="3" maxlength="15" placeholder="Maksimal 15 karakter"><?php echo $d['transaksi_keterangan']; ?></textarea>
             </div>
             <div class="form-group">
               <label>Rekening Bank</label>
