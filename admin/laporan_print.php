@@ -1,3 +1,16 @@
+<?php
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+
+// Check authentication
+if (!isset($_SESSION['status']) || ($_SESSION['status'] != "administrator_logedin" && $_SESSION['status'] != "manajemen_logedin")) {
+	header("location:../index.php?alert=belum_login");
+	exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -6,16 +19,124 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Laporan Aplikasi Keuangan</title>
 	<link rel="stylesheet" href="../assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+		}
 
+		.header-section {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		.header-section h2 {
+			font-size: 18px;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+
+		.header-section h3 {
+			font-size: 15px;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+
+		.header-section h4 {
+			font-size: 11px;
+			font-weight: bold;
+			margin-bottom: 20px;
+		}
+
+		.info-table {
+			margin-bottom: 20px;
+		}
+
+		.info-table th {
+			font-weight: bold;
+			font-size: 10px;
+			padding: 3px 5px;
+			text-align: left;
+		}
+
+		.info-table td {
+			font-size: 10px;
+			padding: 3px 5px;
+			text-align: left;
+		}
+
+		.main-table {
+			font-size: 10px;
+			width: 100%;
+		}
+
+		.main-table th {
+			background-color: #f8f9fa;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: middle;
+			padding: 8px 4px;
+			border: 1px solid #000;
+		}
+
+		.main-table td {
+			text-align: center;
+			vertical-align: middle;
+			padding: 8px 4px;
+			border: 1px solid #000;
+			line-height: 1.3;
+		}
+
+		.bank-cell {
+			text-align: center;
+			font-size: 9px;
+			line-height: 1.4;
+		}
+
+		.total-row th {
+			background-color: #e9ecef;
+			font-weight: bold;
+		}
+
+		.saldo-row th {
+			background-color: #007bff;
+			color: white;
+			font-weight: bold;
+		}
+
+		.saldo-row td {
+			background-color: #007bff;
+			color: white;
+			font-weight: bold;
+		}
+
+		.text-success {
+			color: #28a745 !important;
+		}
+
+		.text-danger {
+			color: #dc3545 !important;
+		}
+
+		@media print {
+			body {
+				margin: 0;
+			}
+
+			.no-print {
+				display: none;
+			}
+		}
+	</style>
 </head>
 
 <body>
 
-	<center>
+	<div class="header-section">
 		<h2>Majelis Perwakilan Khusus</h2>
 		<h3>Yayasan Pelayanan Pekabaran Injil Indonesia Batu di Jakarta</h3>
 		<h4>LAPORAN KEUANGAN</h4>
-	</center>
+	</div>
 
 
 	<?php
@@ -27,21 +148,21 @@
 	?>
 
 		<div class="row">
-			<div class="col-lg-6">
-				<table class="table table-bordered">
+			<div class="col-lg-4">
+				<table class="info-table" style="width: auto;">
 					<tr>
-						<th width="30%">DARI TANGGAL</th>
-						<th width="1%">:</th>
+						<th style="width: 120px;">DARI TANGGAL</th>
+						<th style="width: 10px;">:</th>
 						<td><?php echo date('d-m-Y', strtotime($tgl_dari)); ?></td>
 					</tr>
 					<tr>
-						<th>SAMPAI TANGGAL</th>
-						<th>:</th>
+						<th style="width: 120px;">SAMPAI TANGGAL</th>
+						<th style="width: 10px;">:</th>
 						<td><?php echo date('d-m-Y', strtotime($tgl_sampai)); ?></td>
 					</tr>
 					<tr>
-						<th>KATEGORI</th>
-						<th>:</th>
+						<th style="width: 120px;">KATEGORI</th>
+						<th style="width: 10px;">:</th>
 						<td>
 							<?php
 							if ($kategori == "semua") {
@@ -61,19 +182,19 @@
 		</div>
 
 		<div class="table-responsive">
-			<table class="table table-bordered table-striped">
+			<table class="main-table table-bordered">
 				<thead>
 					<tr>
-						<th width="1%" rowspan="2">NO</th>
-						<th width="10%" rowspan="2" class="text-center">TANGGAL</th>
-						<th rowspan="2" class="text-center">KATEGORI</th>
-						<th rowspan="2" class="text-center">KETERANGAN</th>
-						<th rowspan="2" class="text-center">REKENING</th> <!-- Add this line -->
-						<th colspan="2" class="text-center">JENIS</th>
+						<th width="3%" rowspan="2">NO</th>
+						<th width="12%" rowspan="2">TANGGAL</th>
+						<th width="15%" rowspan="2">KATEGORI</th>
+						<th width="17%" rowspan="2">KETERANGAN</th>
+						<th width="18%" rowspan="2">REKENING BANK</th>
+						<th colspan="2">JENIS</th>
 					</tr>
 					<tr>
-						<th class="text-center">PEMASUKAN</th>
-						<th class="text-center">PENGELUARAN</th>
+						<th width="17.5%">PEMASUKAN</th>
+						<th width="17.5%">PENGELUARAN</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -102,12 +223,16 @@
 						}
 					?>
 						<tr>
-							<td class="text-center"><?php echo $no++; ?></td>
-							<td class="text-center"><?php echo date('d-m-Y', strtotime($d['transaksi_tanggal'])); ?></td>
+							<td><?php echo $no++; ?></td>
+							<td><?php echo date('d-m-Y', strtotime($d['transaksi_tanggal'])); ?></td>
 							<td><?php echo $d['kategori']; ?></td>
 							<td><?php echo $d['transaksi_keterangan']; ?></td>
-							<td><?php echo $d['bank_nama']; ?> <br> <?php echo $d['bank_nomor']; ?> <br> a.n. <?php echo $d['bank_pemilik']; ?></td> <!-- Add this line -->
-							<td class="text-center">
+							<td class="bank-cell">
+								<div><?php echo $d['bank_nama']; ?></div>
+								<div><?php echo $d['bank_nomor']; ?></div>
+								<div>a.n. <?php echo $d['bank_pemilik']; ?></div>
+							</td>
+							<td>
 								<?php
 								if ($d['transaksi_jenis'] == "Pemasukan") {
 									echo "Rp. " . number_format($d['transaksi_nominal']) . " ,-";
@@ -116,7 +241,7 @@
 								}
 								?>
 							</td>
-							<td class="text-center">
+							<td>
 								<?php
 								if ($d['transaksi_jenis'] == "Pengeluaran") {
 									echo "Rp. " . number_format($d['transaksi_nominal']) . " ,-";
@@ -129,14 +254,14 @@
 					<?php
 					}
 					?>
-					<tr>
-						<th colspan="5" class="text-right">TOTAL</th> <!-- was 4 -->
-						<td class="text-center text-bold text-success"><?php echo "Rp. " . number_format($total_pemasukan) . " ,-"; ?></td>
-						<td class="text-center text-bold text-danger"><?php echo "Rp. " . number_format($total_pengeluaran) . " ,-"; ?></td>
+					<tr class="total-row">
+						<th colspan="5">TOTAL</th>
+						<td class="text-bold text-success"><?php echo "Rp. " . number_format($total_pemasukan) . " ,-"; ?></td>
+						<td class="text-bold text-danger"><?php echo "Rp. " . number_format($total_pengeluaran) . " ,-"; ?></td>
 					</tr>
-					<tr>
-						<th colspan="5" class="text-right">SALDO</th> <!-- was 4 -->
-						<td colspan="2" class="text-center text-bold text-white bg-primary"><?php echo "Rp. " . number_format($total_pemasukan - $total_pengeluaran) . " ,-"; ?></td>
+					<tr class="saldo-row">
+						<th colspan="5">SALDO</th>
+						<td colspan="2" class="text-bold"><?php echo "Rp. " . number_format($total_pemasukan - $total_pengeluaran) . " ,-"; ?></td>
 					</tr>
 				</tbody>
 			</table>
