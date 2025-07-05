@@ -36,10 +36,13 @@
                       <span class="logo-text">SIMKEU</span>
                   </a>
                   <!-- Menu: main ul -->
+                  <?php
+                    $current_page = basename($_SERVER['PHP_SELF']);
+                    ?>
                   <ul class="menu-list flex-grow-1 mt-4 px-1">
                       <li class="divider mt-4 py-2 border-top text-uppercase"><small>Halaman Utama</small></li>
                       <li>
-                          <a class="m-link active" href="index.php">
+                          <a class="m-link <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>" href="index.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
                                   <path xmlns="http://www.w3.org/2000/svg" d="M34,18.756V34H22v-8h-6v8h-4V14.31l7-3.89L34,18.756z M34,16.472V6h-6v7.139L34,16.472z" style="fill:var(--primary-color);" data-st="fill:var(--chart-color4);"></path>
                                   <path xmlns="http://www.w3.org/2000/svg" class="st0" d="M34,14.19V6h-6v2h4v5.08L19,5.86L0.51,16.13l0.98,1.74L19,8.14l17.51,9.73l0.98-1.74L34,14.19z M32,32h-8v-8H14  v8H6V17.653l-2,1.111V34h12v-8h6v8h12V18.764l-2-1.111V32z"></path>
@@ -50,7 +53,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="m-link" href="kategori.php">
+                          <a class="m-link <?php echo ($current_page == 'kategori.php') ? 'active' : ''; ?>" href="kategori.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
                                   <path xmlns="http://www.w3.org/2000/svg" d="M34,18.756V34H22v-8h-6v8h-4V14.31l7-3.89L34,18.756z M34,16.472V6h-6v7.139L34,16.472z" style="fill:var(--primary-color);" data-st="fill:var(--chart-color4);"></path>
                                   <path xmlns="http://www.w3.org/2000/svg" class="st0" d="M34,14.19V6h-6v2h4v5.08L19,5.86L0.51,16.13l0.98,1.74L19,8.14l17.51,9.73l0.98-1.74L34,14.19z M32,32h-8v-8H14  v8H6V17.653l-2,1.111V34h12v-8h6v8h12V18.764l-2-1.111V32z"></path>
@@ -61,7 +64,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="m-link" href="transaksi.php">
+                          <a class="m-link <?php echo ($current_page == 'transaksi.php') ? 'active' : ''; ?>" href="transaksi.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
                                   <path xmlns="http://www.w3.org/2000/svg" d="M34,18.756V34H22v-8h-6v8h-4V14.31l7-3.89L34,18.756z M34,16.472V6h-6v7.139L34,16.472z" style="fill:var(--primary-color);" data-st="fill:var(--chart-color4);"></path>
                                   <path xmlns="http://www.w3.org/2000/svg" class="st0" d="M34,14.19V6h-6v2h4v5.08L19,5.86L0.51,16.13l0.98,1.74L19,8.14l17.51,9.73l0.98-1.74L34,14.19z M32,32h-8v-8H14  v8H6V17.653l-2,1.111V34h12v-8h6v8h12V18.764l-2-1.111V32z"></path>
@@ -72,7 +75,7 @@
                           </a>
                       </li>
                       <li class="collapsed">
-                          <a class="m-link" data-bs-toggle="collapse" data-bs-target="#form" href="#">
+                          <a class="m-link <?php echo (in_array($current_page, ['hutang.php', 'piutang.php'])) ? 'active' : ''; ?>" data-bs-toggle="collapse" data-bs-target="#form" href="#">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="20px" viewBox="0 0 32 32">
                                   <path d="M2,0v32h28V0H2z M28,30H4V2h24V30z" style="fill:var(--primary-color);"></path>
                                   <path d="M19,8V4H6v10h20V8H19z M8,6h9v2H8V6z M24,12H8v-2h16V12z" style="fill:var(--svg-color);"></path>
@@ -83,13 +86,13 @@
                               </div> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
                           </a>
                           <!-- Menu: Sub menu ul -->
-                          <ul class="sub-menu collapse" id="form">
-                              <li><a class="ms-link" href="hutang.php">Catatan Hutang</a></li>
-                              <li><a class="ms-link" href="piutang.php">Catatan Piutang</a></li>
+                          <ul class="sub-menu collapse <?php echo (in_array($current_page, ['hutang.php', 'piutang.php'])) ? 'show' : ''; ?>" id="form">
+                              <li><a class="ms-link <?php echo ($current_page == 'hutang.php') ? 'active' : ''; ?>" href="hutang.php">Catatan Hutang</a></li>
+                              <li><a class="ms-link <?php echo ($current_page == 'piutang.php') ? 'active' : ''; ?>" href="piutang.php">Catatan Piutang</a></li>
                           </ul>
                       </li>
                       <li>
-                          <a class="m-link" href="bank.php">
+                          <a class="m-link <?php echo ($current_page == 'bank.php') ? 'active' : ''; ?>" href="bank.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
                                   <path xmlns="http://www.w3.org/2000/svg" d="M34,18.756V34H22v-8h-6v8h-4V14.31l7-3.89L34,18.756z M34,16.472V6h-6v7.139L34,16.472z" style="fill:var(--primary-color);" data-st="fill:var(--chart-color4);"></path>
                                   <path xmlns="http://www.w3.org/2000/svg" class="st0" d="M34,14.19V6h-6v2h4v5.08L19,5.86L0.51,16.13l0.98,1.74L19,8.14l17.51,9.73l0.98-1.74L34,14.19z M32,32h-8v-8H14  v8H6V17.653l-2,1.111V34h12v-8h6v8h12V18.764l-2-1.111V32z"></path>
@@ -100,7 +103,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="m-link" href="user.php">
+                          <a class="m-link <?php echo ($current_page == 'user.php') ? 'active' : ''; ?>" href="user.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
                                   <path xmlns="http://www.w3.org/2000/svg" d="M34,18.756V34H22v-8h-6v8h-4V14.31l7-3.89L34,18.756z M34,16.472V6h-6v7.139L34,16.472z" style="fill:var(--primary-color);" data-st="fill:var(--chart-color4);"></path>
                                   <path xmlns="http://www.w3.org/2000/svg" class="st0" d="M34,14.19V6h-6v2h4v5.08L19,5.86L0.51,16.13l0.98,1.74L19,8.14l17.51,9.73l0.98-1.74L34,14.19z M32,32h-8v-8H14  v8H6V17.653l-2,1.111V34h12v-8h6v8h12V18.764l-2-1.111V32z"></path>
@@ -111,7 +114,7 @@
                           </a>
                       </li>
                       <li>
-                          <a class="m-link" href="laporan.php">
+                          <a class="m-link <?php echo ($current_page == 'laporan.php') ? 'active' : ''; ?>" href="laporan.php">
                               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 38 38">
                                   <path xmlns="http://www.w3.org/2000/svg" d="M34,18.756V34H22v-8h-6v8h-4V14.31l7-3.89L34,18.756z M34,16.472V6h-6v7.139L34,16.472z" style="fill:var(--primary-color);" data-st="fill:var(--chart-color4);"></path>
                                   <path xmlns="http://www.w3.org/2000/svg" class="st0" d="M34,14.19V6h-6v2h4v5.08L19,5.86L0.51,16.13l0.98,1.74L19,8.14l17.51,9.73l0.98-1.74L34,14.19z M32,32h-8v-8H14  v8H6V17.653l-2,1.111V34h12v-8h6v8h12V18.764l-2-1.111V32z"></path>
